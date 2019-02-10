@@ -155,6 +155,16 @@ public:
 	 */
 	void customClear();
 
+	/**
+	 * Print Bar filled left to right.
+	 *
+	 * @param x      x coordinate of the start for a bar.
+	 * @param y      y coordinate of the start for a bar.
+	 * @param len    length of the bar.
+	 * @param value  value (filled width) of a bar.
+	 */
+	void printBar(uint8_t x, uint8_t y, uint8_t len, uint8_t value);
+
 	// Custom character sets
 
 	void custom_set_0();
@@ -174,6 +184,7 @@ private:
 	uint8_t _rows;
 	uint8_t _charsize;
 	uint8_t _backlightval;
+	uint8_t _cur_custom_set = 255;
 };
 
 #endif // LCD_I2C_H

@@ -45,6 +45,7 @@ customClear	KEYWORD2
 custom_set_0	KEYWORD2
 custom_set_1	KEYWORD2
 custom_set_2	KEYWORD2
+printBar	KEYWORD2
 ###########################################
 # Constants (LITERAL1)
 ###########################################

@@ -265,52 +265,96 @@ void LCD_I2C::customClear() {
 	}
 }
 
+void LCD_I2C::printBar(uint8_t x, uint8_t y, uint8_t len, uint8_t value) {
+	uint8_t last_x = x + len - 1;
+
+	if (!value) {
+		value = 1;
+	}
+
+	setCursor(x, y);
+	for (int i = x; i < last_x; i += 1) {
+		if (value >= 5) {
+			write(255);
+			value -= 5;
+		}
+		else {
+			custom_set_0();
+			setCursor(i, y);
+			write(value);
+			value = 0;
+		}
+	}
+
+	if (value >= 4) {
+		write(255);
+	}
+	else if (!value) {
+		write(7);
+	}
+	else {
+		custom_set_1();
+		setCursor(last_x, y);
+		write(value);
+	}
+}
+
+/************ Custom sets ******************************/
+
 void LCD_I2C::custom_set_0() {
-	customClear();
+	if (_cur_custom_set != 0) {
+		_cur_custom_set = 0;
 
-	unsigned char f0[8] = { -1, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, -1 };
-	unsigned char f1[8] = { -1, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, -1 };
-	unsigned char f2[8] = { -1, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, -1 };
-	unsigned char f3[8] = { -1, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100, -1 };
-	unsigned char f4[8] = { -1, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, -1 };
-	unsigned char most_right[8] = { -1, 1, 1, 1, 1, 1, 1, -1 };
+		unsigned char f0[8] = { -1, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, -1 };
+		unsigned char f1[8] = { -1, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, -1 };
+		unsigned char f2[8] = { -1, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, -1 };
+		unsigned char f3[8] = { -1, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100, -1 };
+		unsigned char f4[8] = { -1, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, -1 };
+		unsigned char most_right[8] = { -1, 1, 1, 1, 1, 1, 1, -1 };
 
-	createChar(0, f0);
-	createChar(1, f1);
-	createChar(2, f2);
-	createChar(3, f3);
-	createChar(4, f4);
-	createChar(7, most_right);
+		createChar(0, f0);
+		createChar(1, f1);
+		createChar(2, f2);
+		createChar(3, f3);
+		createChar(4, f4);
+		createChar(7, most_right);
+	}
 }
 void LCD_I2C::custom_set_1() {
-	customClear();
+	if (_cur_custom_set != 1) {
+		_cur_custom_set = 1;
+		customClear();
 
-	unsigned char f0[8] = { -1, 1, 1, 1, 1, 1, 1, -1 };
-	unsigned char f1[8] = { -1, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, -1 };
-	unsigned char f2[8] = { -1, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, -1 };
-	unsigned char f3[8] = { -1, 0b11101, 0b11101, 0b11101, 0b11101, 0b11101, 0b11101, -1 };
+		unsigned char f0[8] = { -1, 1, 1, 1, 1, 1, 1, -1 };
+		unsigned char f1[8] = { -1, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, -1 };
+		unsigned char f2[8] = { -1, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, -1 };
+		unsigned char f3[8] = { -1, 0b11101, 0b11101, 0b11101, 0b11101, 0b11101, 0b11101, -1 };
 
-	createChar(7, f0);
-	createChar(1, f1);
-	createChar(2, f2);
-	createChar(3, f3);
+		createChar(7, f0);
+		createChar(1, f1);
+		createChar(2, f2);
+		createChar(3, f3);
+	}
 }
 void LCD_I2C::custom_set_2() {
-	customClear();
+	if (_cur_custom_set != 2) {
+		_cur_custom_set = 2;
+		customClear();
 
-	unsigned char f1[8] = { 0,  0,  0,  0,  0,  0,  0, -1 };
-	unsigned char f2[8] = { 0,  0,  0,  0,  0,  0, -1, -1 };
-	unsigned char f3[8] = { 0,  0,  0,  0,  0, -1, -1, -1 };
-	unsigned char f4[8] = { 0,  0,  0,  0, -1, -1, -1, -1 };
-	unsigned char f5[8] = { 0,  0,  0, -1, -1, -1, -1, -1 };
-	unsigned char f6[8] = { 0,  0, -1, -1, -1, -1, -1, -1 };
-	unsigned char f7[8] = { 0, -1, -1, -1, -1, -1, -1, -1 };
+		unsigned char f1[8] = { 0,  0,  0,  0,  0,  0,  0, -1 };
+		unsigned char f2[8] = { 0,  0,  0,  0,  0,  0, -1, -1 };
+		unsigned char f3[8] = { 0,  0,  0,  0,  0, -1, -1, -1 };
+		unsigned char f4[8] = { 0,  0,  0,  0, -1, -1, -1, -1 };
+		unsigned char f5[8] = { 0,  0,  0, -1, -1, -1, -1, -1 };
+		unsigned char f6[8] = { 0,  0, -1, -1, -1, -1, -1, -1 };
+		unsigned char f7[8] = { 0, -1, -1, -1, -1, -1, -1, -1 };
 
-	createChar(1, f1);
-	createChar(2, f2);
-	createChar(3, f3);
-	createChar(4, f4);
-	createChar(5, f5);
-	createChar(6, f6);
-	createChar(7, f7);
+		createChar(1, f1);
+		createChar(2, f2);
+		createChar(3, f3);
+		createChar(4, f4);
+		createChar(5, f5);
+		createChar(6, f6);
+		createChar(7, f7);
+	}
 }

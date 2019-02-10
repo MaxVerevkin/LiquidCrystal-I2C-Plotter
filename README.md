@@ -11,6 +11,7 @@ You do not need to include "Wire.h". </br>
 See examples for more.
 
 # Additional functions #
+printBar: Print Bar filled left to right.
 
 # Custom Sets #
 custom_set_0() </br>
