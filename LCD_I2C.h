@@ -82,7 +82,7 @@ public:
 	void clear();
 
 	/**
-	 * Next print/write operation will will start from the first position on the LCD display.
+	 * Next print/write operation will start from the first position on the LCD display.
 	 */
 	void home();
 
@@ -118,6 +118,11 @@ public:
 	 * methods blink() and noBlink() for changing cursor blink.
 	 */
 	void cursor();
+
+	/**
+	 * Overrides all the 8 custom characters by the blank char. 
+	 */
+	void customClear();
 
 	void scrollDisplayLeft();
 	void scrollDisplayRight();
