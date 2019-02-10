@@ -11,7 +11,12 @@ You do not need to include "Wire.h". </br>
 See examples for more.
 
 # Additional functions #
-customClear(): Overrides all the 8 custom characters by the blank char. </br>
+
+# Custom Sets #
+custom_set_0() </br>
+</br>
+Use demoCustomSets() to list all the custom sets on the display.</br>
+Use customClear() to reset the custom characters to blanck char.
 
 -------------------------------------------------------------------------------------------------------------------
 This library is forked from https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library

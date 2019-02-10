@@ -42,6 +42,8 @@ setBacklight	KEYWORD2
 load_custom_character	KEYWORD2
 printstr	KEYWORD2
 customClear	KEYWORD2
+demoCustomSets	KEYWORD2
+custom_set_0	KEYWORD2
 ###########################################
 # Constants (LITERAL1)
 ###########################################

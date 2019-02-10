@@ -119,11 +119,6 @@ public:
 	 */
 	void cursor();
 
-	/**
-	 * Overrides all the 8 custom characters by the blank char. 
-	 */
-	void customClear();
-
 	void scrollDisplayLeft();
 	void scrollDisplayRight();
 	void printLeft();
@@ -147,10 +142,23 @@ public:
 	inline void cursor_on() { cursor(); }
 	inline void cursor_off() { noCursor(); }
 
-// Compatibility API function aliases
+	// Compatibility API function aliases
+
 	void setBacklight(uint8_t new_val);				// alias for backlight() and nobacklight()
 	void load_custom_character(uint8_t char_num, uint8_t *rows);	// alias for createChar()
 	void printstr(const char[]);
+
+	// Additional functionality
+
+	/**
+	 * Overrides all the 8 custom characters by the blank char.
+	 */
+	void customClear();
+
+	// Custom character sets
+
+	void demoCustomSets();
+	void custom_set_0();
 
 private:
 	void send(uint8_t, uint8_t);
