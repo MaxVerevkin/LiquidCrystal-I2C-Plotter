@@ -259,7 +259,7 @@ void LCD_I2C::printstr(const char c[]){
 /************ Additional functionality *****************/
 
 void LCD_I2C::customClear() {
-	unsigned char[8] blank = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	unsigned char blank[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	for (int i = 0; i < 8; i += 1) {
 		createChar(i, blank);
 	}
