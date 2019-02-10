@@ -137,17 +137,6 @@ public:
 	virtual size_t write(uint8_t);
 	void command(uint8_t);
 
-	inline void blink_on() { blink(); }
-	inline void blink_off() { noBlink(); }
-	inline void cursor_on() { cursor(); }
-	inline void cursor_off() { noCursor(); }
-
-	// Compatibility API function aliases
-
-	void setBacklight(uint8_t new_val);				// alias for backlight() and nobacklight()
-	void load_custom_character(uint8_t char_num, uint8_t *rows);	// alias for createChar()
-	void printstr(const char[]);
-
 	// Additional functionality
 
 	/**
