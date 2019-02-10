@@ -265,26 +265,6 @@ void LCD_I2C::customClear() {
 	}
 }
 
-void LCD_I2C::demoCustomSets() {
-	clear();
-	print("Demo custom sets");
-	delay(2000);
-
-	clear();
-	print("custom_set_0");
-	custom_set_0();
-	setCursor(0, 1);
-
-	for (int i = 0; i < 8; i += 1) {
-		write(i);
-		print(' ');
-	}
-	delay(5000);
-
-	customClear();
-	clear();
-}
-
 void LCD_I2C::custom_set_0() {
 	customClear();
 
@@ -301,4 +281,36 @@ void LCD_I2C::custom_set_0() {
 	createChar(3, f3);
 	createChar(4, f4);
 	createChar(7, most_right);
+}
+void LCD_I2C::custom_set_1() {
+	customClear();
+
+	unsigned char f0[8] = { -1, 1, 1, 1, 1, 1, 1, -1 };
+	unsigned char f1[8] = { -1, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, 0b10001, -1 };
+	unsigned char f2[8] = { -1, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, 0b11001, -1 };
+	unsigned char f3[8] = { -1, 0b11101, 0b11101, 0b11101, 0b11101, 0b11101, 0b11101, -1 };
+
+	createChar(7, f0);
+	createChar(1, f1);
+	createChar(2, f2);
+	createChar(3, f3);
+}
+void LCD_I2C::custom_set_2() {
+	customClear();
+
+	unsigned char f1[8] = { 0,  0,  0,  0,  0,  0,  0, -1 };
+	unsigned char f2[8] = { 0,  0,  0,  0,  0,  0, -1, -1 };
+	unsigned char f3[8] = { 0,  0,  0,  0,  0, -1, -1, -1 };
+	unsigned char f4[8] = { 0,  0,  0,  0, -1, -1, -1, -1 };
+	unsigned char f5[8] = { 0,  0,  0, -1, -1, -1, -1, -1 };
+	unsigned char f6[8] = { 0,  0, -1, -1, -1, -1, -1, -1 };
+	unsigned char f7[8] = { 0, -1, -1, -1, -1, -1, -1, -1 };
+
+	createChar(1, f1);
+	createChar(2, f2);
+	createChar(3, f3);
+	createChar(4, f4);
+	createChar(5, f5);
+	createChar(6, f6);
+	createChar(7, f7);
 }

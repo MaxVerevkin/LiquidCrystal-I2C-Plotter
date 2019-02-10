@@ -157,8 +157,9 @@ public:
 
 	// Custom character sets
 
-	void demoCustomSets();
 	void custom_set_0();
+	void custom_set_1();
+	void custom_set_2();
 
 private:
 	void send(uint8_t, uint8_t);

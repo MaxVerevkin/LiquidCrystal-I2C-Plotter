@@ -15,8 +15,8 @@ See examples for more.
 # Custom Sets #
 custom_set_0() </br>
 </br>
-Use demoCustomSets() to list all the custom sets on the display.</br>
-Use customClear() to reset the custom characters to blanck char.
+Use customClear() to reset the custom characters to blanck char. </br>
+See ListCustomSets examle to list all the sets on your display
 
 -------------------------------------------------------------------------------------------------------------------
 This library is forked from https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library
