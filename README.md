@@ -7,6 +7,7 @@ This library in addition to the clasic LiquidCrystal_I2C usage allows you to dra
 
 # Usage #
 Include this library by #include<LCD_I2C.h>.
+You do not need to include "Wire.h".
 See examples for more.
 
 -------------------------------------------------------------------------------------------------------------------
