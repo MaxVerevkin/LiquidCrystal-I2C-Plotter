@@ -1,9 +1,12 @@
 # Installation #
-Create a new folder called "LiquidCrystal_I2C" under the folder named "libraries" in your Arduino sketchbook folder.
-Create the folder "libraries" in case it does not exist yet. Place all the files in the "LiquidCrystal_I2C" folder.
+Clone this repo into "libraries" directory in your Arduino sketchbook folder.
+Create the "libraries" directory in case it does not exist yet.
+
+# Features #
+This library in addition to the clasic LiquidCrystal_I2C usage allows you to draw different graths.
 
 # Usage #
 To use the library in your own sketch, select it from *Sketch > Import Library*.
 
 -------------------------------------------------------------------------------------------------------------------
-This library is based on work done by DFROBOT (www.dfrobot.com).
+This library is forked from https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library
