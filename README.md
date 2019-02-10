@@ -14,6 +14,8 @@ See examples for more.
 
 # Custom Sets #
 custom_set_0() </br>
+custom_set_1() </br>
+custom_set_2() </br>
 </br>
 Use customClear() to reset the custom characters to blanck char. </br>
 See ListCustomSets examle to list all the sets on your display
