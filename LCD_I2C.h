@@ -154,6 +154,17 @@ public:
 	 */
 	void printBar(uint8_t x, uint8_t y, uint8_t len, uint8_t value);
 
+	/**
+	 * Plots the array of bytes.
+	 *
+	 * @param x       x coordinate of the left up point of a plot.
+	 * @param x       y coordinate of the left up point of a plot.
+	 * @param len     the length of a plot.
+	 * @param height  the height of a plot.
+	 * @param values  array of a values (filled height).
+	 */
+	void makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[]);
+
 	// Custom character sets
 
 	void custom_set_0();
@@ -165,6 +176,7 @@ private:
 	void write4bits(uint8_t);
 	void expanderWrite(uint8_t);
 	void pulseEnable(uint8_t);
+	void print_col(uint8_t x, uint8_t y, uint8_t height, uint8_t val);
 	uint8_t _addr;
 	uint8_t _displayfunction;
 	uint8_t _displaycontrol;

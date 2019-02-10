@@ -280,6 +280,26 @@ void LCD_I2C::printBar(uint8_t x, uint8_t y, uint8_t len, uint8_t value) {
 		write(value);
 	}
 }
+void LCD_I2C::makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[]) {
+	custom_set_2();
+	y += height - 1;
+	for (int col = 0; col < len; col += 1) {
+		print_col(x + col, y, height, values[col]);
+	}
+}
+void LCD_I2C::print_col(uint8_t x, uint8_t y, uint8_t height, uint8_t val) {
+	for (int i = 0; i < height; i += 1) {
+		setCursor(x, y - i);
+		if (val >= 8) {
+			write(255);
+			val -= 8;
+		}
+		else {
+			write(val);
+			val = 0;
+		}
+	}
+}
 
 /************ Custom sets ******************************/
 

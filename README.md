@@ -11,7 +11,8 @@ You do not need to include "Wire.h". </br>
 See examples for more.
 
 # Additional functions #
-printBar: Print Bar filled left to right.
+printBar: Print Bar filled left to right. </br>
+makePlot: Plots the array of bytes.
 
 # Custom Sets #
 custom_set_0() </br>
