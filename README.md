@@ -6,7 +6,8 @@ Create the "libraries" directory in case it does not exist yet.
 This library in addition to the clasic LiquidCrystal_I2C usage allows you to draw different graths.
 
 # Usage #
-To use the library in your own sketch, select it from *Sketch > Import Library*.
+Include this library by #include<LCD_I2C.h>.
+See examples for more.
 
 -------------------------------------------------------------------------------------------------------------------
 This library is forked from https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library

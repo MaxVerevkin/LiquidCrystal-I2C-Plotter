@@ -1,5 +1,5 @@
-#ifndef FDB_LIQUID_CRYSTAL_I2C_H
-#define FDB_LIQUID_CRYSTAL_I2C_H
+#ifndef LCD_I2C_H
+#define LCD_I2C_H
 
 #include <inttypes.h>
 #include <Print.h>
@@ -57,7 +57,7 @@
  * The backlight is on by default, since that is the most likely operating mode in
  * most cases.
  */
-class LiquidCrystal_I2C : public Print {
+class LCD_I2C : public Print {
 public:
 	/**
 	 * Constructor
@@ -68,7 +68,7 @@ public:
 	 * @param lcd_rows	Number of rows your LCD display has.
 	 * @param charsize	The size in dots that the display has, use LCD_5x10DOTS or LCD_5x8DOTS.
 	 */
-	LiquidCrystal_I2C(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows, uint8_t charsize = LCD_5x8DOTS);
+	LCD_I2C(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows, uint8_t charsize = LCD_5x8DOTS);
 
 	/**
 	 * Set the LCD display in the correct begin state, must be called before anything else is done.
@@ -162,4 +162,4 @@ private:
 	uint8_t _backlightval;
 };
 
-#endif // FDB_LIQUID_CRYSTAL_I2C_H
+#endif // LCD_I2C_H
