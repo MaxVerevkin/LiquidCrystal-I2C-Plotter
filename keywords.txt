@@ -45,8 +45,12 @@ customClear	KEYWORD2
 custom_set_0	KEYWORD2
 custom_set_1	KEYWORD2
 custom_set_2	KEYWORD2
+custom_set_3	KEYWORD2
 printBar	KEYWORD2
 makePlot	KEYWORD2
 ###########################################
 # Constants (LITERAL1)
 ###########################################
+PLOT_FILLED	LITERAL1
+PLOT_UNFILLED	LITERAL1
+

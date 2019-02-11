@@ -12,12 +12,15 @@ See examples for more.
 
 # Additional functions #
 printBar: Print Bar filled left to right. </br>
-makePlot: Plots the array of bytes.
+makePlot: Plots the array of bytes. </br>
+
+See exapmles for information about usage.
 
 # Custom Sets #
 custom_set_0() </br>
 custom_set_1() </br>
 custom_set_2() </br>
+custom_set_3() </br>
 </br>
 Use customClear() to reset the custom characters to blanck char. </br>
 See ListCustomSets examle to list all the sets on your display.

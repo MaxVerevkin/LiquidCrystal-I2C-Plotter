@@ -46,6 +46,10 @@
 #define LCD_BACKLIGHT 0x08
 #define LCD_NOBACKLIGHT 0x00
 
+// plot styles
+#define PLOT_FILLED   0x00
+#define PLOT_UNFILLED 0x01
+
 #define En B00000100  // Enable bit
 #define Rw B00000010  // Read/Write bit
 #define Rs B00000001  // Register select bit
@@ -163,20 +167,22 @@ public:
 	 * @param height  the height of a plot.
 	 * @param values  array of a values (filled height).
 	 */
-	void makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[]);
+	void makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[], uint8_t style);
 
 	// Custom character sets
 
 	void custom_set_0();
 	void custom_set_1();
 	void custom_set_2();
+	void custom_set_3();
 
 private:
 	void send(uint8_t, uint8_t);
 	void write4bits(uint8_t);
 	void expanderWrite(uint8_t);
 	void pulseEnable(uint8_t);
-	void print_col(uint8_t x, uint8_t y, uint8_t height, uint8_t val);
+	void print_col_0(uint8_t x, uint8_t y, uint8_t height, uint8_t val);
+	void print_col_1(uint8_t x, uint8_t y, uint8_t height, uint8_t val);
 	uint8_t _addr;
 	uint8_t _displayfunction;
 	uint8_t _displaycontrol;

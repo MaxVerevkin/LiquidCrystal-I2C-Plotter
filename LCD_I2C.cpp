@@ -280,14 +280,27 @@ void LCD_I2C::printBar(uint8_t x, uint8_t y, uint8_t len, uint8_t value) {
 		write(value);
 	}
 }
-void LCD_I2C::makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[]) {
-	custom_set_2();
+
+void LCD_I2C::makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[], uint8_t style) {
 	y += height - 1;
-	for (int col = 0; col < len; col += 1) {
-		print_col(x + col, y, height, values[col]);
+	switch (style) {
+	case PLOT_FILLED:
+		custom_set_2();
+		for (int col = 0; col < len; col += 1) {
+			print_col_0(x + col, y, height, values[col]);
+		}
+		break;
+	case PLOT_UNFILLED:
+		custom_set_3();
+		for (int col = 0; col < len; col += 1) {
+			print_col_1(x + col, y, height, values[col]);
+		}
+		break;
 	}
+	
 }
-void LCD_I2C::print_col(uint8_t x, uint8_t y, uint8_t height, uint8_t val) {
+
+void LCD_I2C::print_col_0(uint8_t x, uint8_t y, uint8_t height, uint8_t val) {
 	for (int i = 0; i < height; i += 1) {
 		setCursor(x, y - i);
 		if (val >= 8) {
@@ -296,6 +309,19 @@ void LCD_I2C::print_col(uint8_t x, uint8_t y, uint8_t height, uint8_t val) {
 		}
 		else {
 			write(val);
+			val = 0;
+		}
+	}
+}
+void LCD_I2C::print_col_1(uint8_t x, uint8_t y, uint8_t height, uint8_t val) {
+	for (int i = 0; i < height; i += 1) {
+		setCursor(x, y - i);
+		if (val == 0 || val > 8) {
+			print(' ');
+			val -= 8;
+		}
+		else {
+			write(val - 1);
 			val = 0;
 		}
 	}
@@ -338,6 +364,7 @@ void LCD_I2C::custom_set_1() {
 		createChar(3, f3);
 	}
 }
+
 void LCD_I2C::custom_set_2() {
 	if (_cur_custom_set != 2) {
 		_cur_custom_set = 2;
@@ -358,5 +385,29 @@ void LCD_I2C::custom_set_2() {
 		createChar(5, f5);
 		createChar(6, f6);
 		createChar(7, f7);
+	}
+}
+void LCD_I2C::custom_set_3() {
+	if (_cur_custom_set != 3) {
+		_cur_custom_set = 3;
+		customClear();
+
+		unsigned char f1[8] = {  0,  0,  0,  0,  0,  0,  0, -1 };
+		unsigned char f2[8] = {  0,  0,  0,  0,  0,  0, -1,  0 };
+		unsigned char f3[8] = {  0,  0,  0,  0,  0, -1,  0,  0 };
+		unsigned char f4[8] = {  0,  0,  0,  0, -1,  0,  0,  0 };
+		unsigned char f5[8] = {  0,  0,  0, -1,  0,  0,  0,  0 };
+		unsigned char f6[8] = {  0,  0, -1,  0,  0,  0,  0,  0 };
+		unsigned char f7[8] = {  0, -1,  0,  0,  0,  0,  0,  0 };
+		unsigned char f8[8] = { -1,  0,  0,  0,  0,  0,  0,  0 };
+
+		createChar(0, f1);
+		createChar(1, f2);
+		createChar(2, f3);
+		createChar(3, f4);
+		createChar(4, f5);
+		createChar(5, f6);
+		createChar(6, f7);
+		createChar(7, f8);
 	}
 }

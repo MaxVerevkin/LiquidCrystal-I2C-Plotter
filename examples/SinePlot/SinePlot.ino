@@ -19,6 +19,8 @@ void loop() {
   s += 0.5;
 
   // Make plot at position 0x0 size 16x2 with contens at "l" array
-  lcd.makePlot(0, 0, 16, 2, l);
+  // Use PLOT_UNFILLED for only a line.
+  // Use PLOT_FILLED for "Bar Chart"
+  lcd.makePlot(0, 0, 16, 2, l, PLOT_UNFILLED);
   delay(400);
 }
