@@ -247,41 +247,56 @@ void LCD_I2C::customClear() {
 	}
 }
 
-void LCD_I2C::printBar(uint8_t x, uint8_t y, uint8_t len, uint8_t value) {
+void LCD_I2C::printBar(uint8_t x, uint8_t y, uint8_t len, uint8_t value, uint8_t style = BAR_BORDERS) {
 	uint8_t last_x = x + len - 1;
-
 	if (!value) {
 		value = 1;
 	}
 
+	switch (style)
+	{
+	case BAR_BORDERS:
+		custom_set_0();
+		break;
+	case BAR_NOBORDERS:
+		custom_set_4();
+		break;
+	}
 	setCursor(x, y);
+
 	for (int i = x; i < last_x; i += 1) {
 		if (value >= 5) {
 			write(255);
 			value -= 5;
 		}
 		else {
-			custom_set_0();
-			setCursor(i, y);
 			write(value);
 			value = 0;
 		}
 	}
 
-	if (value >= 4) {
-		write(255);
-	}
-	else if (!value) {
-		write(7);
+	if (style == BAR_BORDERS) {
+		if (value >= 4) {
+			write(255);
+		}
+		else if (!value) {
+			write(7);
+		}
+		else {
+			setCursor(last_x, y);
+			write(value);
+		}
 	}
 	else {
-		custom_set_1();
-		setCursor(last_x, y);
-		write(value);
+		if (value >= 5) {
+			write(255);
+		}
+		else {
+			write(value);
+		}
 	}
 }
-
-void LCD_I2C::makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[], uint8_t style) {
+void LCD_I2C::makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[], uint8_t style = PLOT_FILLED) {
 	y += height - 1;
 	switch (style) {
 	case PLOT_FILLED:
@@ -362,6 +377,22 @@ void LCD_I2C::custom_set_1() {
 		createChar(1, f1);
 		createChar(2, f2);
 		createChar(3, f3);
+	}
+}
+void LCD_I2C::custom_set_4() {
+	if (_cur_custom_set != 4) {
+		_cur_custom_set = 4;
+		customClear();
+
+		unsigned char f1[8] = { 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000 };
+		unsigned char f2[8] = { 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000 };
+		unsigned char f3[8] = { 0b11100, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100 };
+		unsigned char f4[8] = { 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110 };
+
+		createChar(1, f1);
+		createChar(2, f2);
+		createChar(3, f3);
+		createChar(4, f4);
 	}
 }
 

@@ -6,7 +6,9 @@ void setup() {
   lcd.begin();
   // Print empty bar at position 0x1 with length 16
   // (so max value is 16 * 5 = 80)
-  lcd.printBar(0, 1, 16, 0);
+  // Use BAR_BORDERS to have borders
+  // And use BAR_NOBORDERS not to have
+  lcd.printBar(0, 1, 16, 0, BAR_BORDERS);
   delay(100);
 }
 
@@ -21,5 +23,9 @@ void loop() {
     inc = 1; // Go up
   }
   // Print bar
-  lcd.printBar(0, 1, 16, num);
+  if (inc > 0) {
+    lcd.printBar(0, 1, 16, num); // BAR_BORDERS is default
+  } else {
+    lcd.printBar(0, 1, 16, num, BAR_NOBORDERS);
+  }
 }

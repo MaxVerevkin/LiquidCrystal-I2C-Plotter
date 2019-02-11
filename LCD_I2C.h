@@ -47,8 +47,14 @@
 #define LCD_NOBACKLIGHT 0x00
 
 // plot styles
+
 #define PLOT_FILLED   0x00
 #define PLOT_UNFILLED 0x01
+
+#define BAR_BORDERS   0x00
+#define BAR_NOBORDERS 0x01
+
+// some flags
 
 #define En B00000100  // Enable bit
 #define Rw B00000010  // Read/Write bit
@@ -155,8 +161,9 @@ public:
 	 * @param y      y coordinate of the start for a bar.
 	 * @param len    length of the bar.
 	 * @param value  value (filled width) of a bar.
+	 * @param style  a style applied on a bar.
 	 */
-	void printBar(uint8_t x, uint8_t y, uint8_t len, uint8_t value);
+	void printBar(uint8_t x, uint8_t y, uint8_t len, uint8_t value, uint8_t style = BAR_BORDERS);
 
 	/**
 	 * Plots the array of bytes.
@@ -166,8 +173,9 @@ public:
 	 * @param len     the length of a plot.
 	 * @param height  the height of a plot.
 	 * @param values  array of a values (filled height).
+	 * @param style   a style applied on a plot.
 	 */
-	void makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[], uint8_t style);
+	void makePlot(uint8_t x, uint8_t y, uint8_t len, uint8_t height, uint8_t values[], uint8_t style = PLOT_FILLED);
 
 	// Custom character sets
 
@@ -175,6 +183,7 @@ public:
 	void custom_set_1();
 	void custom_set_2();
 	void custom_set_3();
+	void custom_set_4();
 
 private:
 	void send(uint8_t, uint8_t);
